@@ -1,7 +1,6 @@
 # Handles and logs exceptions to keep the program running smoothly and help with debugging.
 import sys 
-import logging
-import logger
+from source.logger import logging
 
 
 def error_message_detail(error, error_detail:sys):
@@ -22,7 +21,8 @@ class CustomException(Exception):
 
     def __str__(self):
         return self.error_message
-    
+
+# test     
 if __name__ == "__main__":
 
     try:
