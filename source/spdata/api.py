@@ -4,6 +4,7 @@ import os
 import base64
 from requests import post , get
 import json
+import pandas as pd
 
 load_dotenv()
 
@@ -62,11 +63,16 @@ def get_songs_by(token, artist_id):
 def top_songs(artist):
     token = get_token()
     result = search_for_artists(token, artist)
+    if not result:
+        print(f"No artist found for {artist}")
+        return []
     artist_id = result["id"]
     songs = get_songs_by(token, artist_id)
     
+    final = []
     for idx, song in enumerate(songs):
-        print(f"{idx + 1}. {song['name']}")
+        song_info = f"{idx + 1}. {song['name']}"
+        final.append(song_info)
+        print(song_info)  # If you still want to print the songs
 
-
-top_songs("Drake")
+    return final
