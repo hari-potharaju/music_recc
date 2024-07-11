@@ -1,4 +1,3 @@
-# gaining authorization for spotify api to query its datasets
 from dotenv import load_dotenv
 import os
 import base64
@@ -14,7 +13,7 @@ client_secret = os.getenv("CLIENT_SECRET")
 print(client_id, client_secret)
 
 def get_token():
-    auth_string = client_id + ":" + client_secret  # Correct the variable name here
+    auth_string = client_id + ":" + client_secret 
     auth_bytes = auth_string.encode("utf-8")
     auth_base64 = str(base64.b64encode(auth_bytes), "utf-8")
     
@@ -26,7 +25,7 @@ def get_token():
     data = {"grant_type":"client_credentials"}
     result = post(url, headers=headers, data=data)
     
-    # Print the status code and response content
+   
     print("Status Code:", result.status_code)
     print("Response Content:", result.content)
     
@@ -73,6 +72,6 @@ def top_songs(artist):
     for idx, song in enumerate(songs):
         song_info = f"{idx + 1}. {song['name']}"
         final.append(song_info)
-        print(song_info)  # If you still want to print the songs
+        print(song_info)  
 
     return final
